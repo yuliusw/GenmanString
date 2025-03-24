@@ -3,40 +3,43 @@
 #include<stdio.h>
 #include<iostream>
 #include<time.h>
-//µÂÊ½×Ö·û´®
+#include<set>
+#include<random>
+
+//å¾·å¼å­—ç¬¦ä¸²
 int main() {
-	//¹¹Ôìº¯Êı²âÊÔ
-	GenmanString* a = new GenmanString("hello");	//¶Ì´®£¬ÄÚ´æÎª¹Ì¶¨ 24×Ö½Ú
-	std::cout << "aµÄÄÚÈİ" << a->B.shortStr.inlined << std::endl;
-	std::cout << "aµÄ´óĞ¡" << sizeof(*a) << std::endl;
-	GenmanString* b = new GenmanString("123456789ABCDEFGHIjKLMN");	//³¤´®,ÄÚ´æÍ¬ÑùÎª24×Ö½Ú,*ptrÎª4×Ö½Ú
-	std::cout << "bµÄË÷ÒıÇøÄÚÈİ£¨Éè¼ÆÖĞÎ´´æ´¢\\0ËùÒÔÓĞÂÒÂë£©";
-	std::printf(b->B.longStr.prefix);												//ºóÃæÂÒÂëÊÇÒòÎªÕâÒ»²¿·ÖÃ»ÓĞ´æ×Ö·û´®µÄÖÕÖ¹·û
+	//æ„é€ å‡½æ•°æµ‹è¯•
+	GenmanString* a = new GenmanString("hello");	//çŸ­ä¸²ï¼Œå†…å­˜ä¸ºå›ºå®š 24å­—èŠ‚
+	std::cout << "açš„å†…å®¹" << a->B.shortStr.inlined << std::endl;
+	std::cout << "açš„å¤§å°" << sizeof(*a) << std::endl;
+	GenmanString* b = new GenmanString("123456789ABCDEFGHIjKLMN");	//é•¿ä¸²,å†…å­˜åŒæ ·ä¸º24å­—èŠ‚,*pträ¸º4å­—èŠ‚
+	std::cout << "bçš„ç´¢å¼•åŒºå†…å®¹ï¼ˆè®¾è®¡ä¸­æœªå­˜å‚¨\\0æ‰€ä»¥æœ‰ä¹±ç ï¼‰";
+	std::printf(b->B.longStr.prefix);												//åé¢ä¹±ç æ˜¯å› ä¸ºè¿™ä¸€éƒ¨åˆ†æ²¡æœ‰å­˜å­—ç¬¦ä¸²çš„ç»ˆæ­¢ç¬¦
 	printf("\n");
-	std::cout << "bµÄÖ¸ÕëÇøÄÚÈİ";
+	std::cout << "bçš„æŒ‡é’ˆåŒºå†…å®¹";
 
 	std::printf(b->B.longStr.__ptr);
 	printf("\n");
-	std::cout << "bµÄ´óĞ¡";
+	std::cout << "bçš„å¤§å°";
 	std::printf("%lld\n", sizeof(*b));
-	std::cout << "bÖĞË÷ÒıÇøµÄ´óĞ¡ºÍÖ¸ÕëÇø´æ´¢µÄ×Ö·ûÊı";
-	std::printf("sizeof and strlen() %lld , %lld", sizeof((b->B)), strlen((b->B.longStr.__ptr))); //½á¹û·Ö±ğÓ¦¸ÃÎª16 ºÍ19
-	//ÆäÖĞ charÊı×éÊäÈëÎª24¸ö×Ö·û£¨°üÀ¨ÖÕÖ¹·û£©£¬4¸öÔÚË÷ÒıprefixÀï£¬20¸öÔÚ*ptrÀï£¬strlen²»°üÀ¨¿Õ×Ö·û¡£
+	std::cout << "bä¸­ç´¢å¼•åŒºçš„å¤§å°å’ŒæŒ‡é’ˆåŒºå­˜å‚¨çš„å­—ç¬¦æ•°";
+	std::printf("sizeof and strlen() %lld , %lld", sizeof((b->B)), strlen((b->B.longStr.__ptr))); //ç»“æœåˆ†åˆ«åº”è¯¥ä¸º16 å’Œ19
+	//å…¶ä¸­ charæ•°ç»„è¾“å…¥ä¸º24ä¸ªå­—ç¬¦ï¼ˆåŒ…æ‹¬ç»ˆæ­¢ç¬¦ï¼‰ï¼Œ4ä¸ªåœ¨ç´¢å¼•prefixé‡Œï¼Œ20ä¸ªåœ¨*ptré‡Œï¼Œstrlenä¸åŒ…æ‹¬ç©ºå­—ç¬¦ã€‚
 	printf("\n");
-	printf("ÏÂ±êÔËËã·ûÖØÔØ²âÊÔ\n((*a)[5], (*b)[6])(%c,%c)", (*a)[5], (*b)[6]);
+	printf("ä¸‹æ ‡è¿ç®—ç¬¦é‡è½½æµ‹è¯•\n((*a)[5], (*b)[6])(%c,%c)", (*a)[5], (*b)[6]);
 
-	//³¤¼Ó¶Ì£¬³¤¼Ó³¤£¬¶Ì¼Ó³¤£¬¶Ì¼Ó¶Ì²âÊÔ¼°<<ÖØÔØ
+	//é•¿åŠ çŸ­ï¼Œé•¿åŠ é•¿ï¼ŒçŸ­åŠ é•¿ï¼ŒçŸ­åŠ çŸ­æµ‹è¯•åŠ<<é‡è½½
 	GenmanString aa = *a + *a;
-	std::cout << "aa = (*a) + (*a)µÄÄÚÈİ£¨a,bÎªÖ¸Õë£©" << std::endl; //aaÓ¦Îªhellohello
+	std::cout << "aa = (*a) + (*a)çš„å†…å®¹ï¼ˆa,bä¸ºæŒ‡é’ˆï¼‰" << std::endl; //aaåº”ä¸ºhellohello
 	std::cout << aa << std::endl;
 	GenmanString bb = *b + *b;
-	std::cout << "bb = (*b) + (*b)µÄÄÚÈİ" << std::endl;
+	std::cout << "bb = (*b) + (*b)çš„å†…å®¹" << std::endl;
 	std::cout << bb << std::endl;
 	GenmanString ab = *a + *b;
-	std::cout << "ab = (*a) + (*b)µÄÄÚÈİ" << std::endl;
+	std::cout << "ab = (*a) + (*b)çš„å†…å®¹" << std::endl;
 	std::cout << ab << std::endl;
 	GenmanString ba = *b + *a;
-	std::cout << "ba = (*a) + (*b)µÄÄÚÈİ" << std::endl;
+	std::cout << "ba = (*a) + (*b)çš„å†…å®¹" << std::endl;
 	std::cout << ba << std::endl;
 	
 	
@@ -48,7 +51,7 @@ int main() {
 	std::cout << "*a+=\" world\" " << std::endl;
 	std::cout << *a << std::endl;
 	
-	std::cout << "ÒÆ¶¯¹¹Ôìº¯ÊıµÄÑéÖ¤ ·Ö±ğÊä³öbbµÄÖ¸ÕëÇøµØÖ·ºÍBµÄµØÖ·" << std::endl;
+	std::cout << "ç§»åŠ¨æ„é€ å‡½æ•°çš„éªŒè¯ åˆ†åˆ«è¾“å‡ºbbçš„æŒ‡é’ˆåŒºåœ°å€å’ŒBçš„åœ°å€" << std::endl;
 	std::cout << (int)bb.B.longStr.__ptr << std::endl;
 	GenmanString B = std::move(bb);
 	std::cout << (int)B.B.longStr.__ptr <<std::endl;
@@ -67,7 +70,7 @@ int main() {
 		S1[i] = *new GenmanString(S[i]);
 	}
 	end = clock();
-	std::cout << "¿½±´¹¹Ôì20000¸öµÄÊ±¼äÎª(ms)" << end - start<<std::endl;
+	std::cout << "æ‹·è´æ„é€ 20000ä¸ªçš„æ—¶é—´ä¸º(ms)" << end - start<<std::endl;
 
 	start2 = clock();
 	for (int i = 0; i < 40000; i++)
@@ -75,7 +78,60 @@ int main() {
 		S2[i] = std::move(S1[i]);
 	}
 	end2 = clock();
-	std::cout << "ÒÆ¶¯¹¹Ôì20000¸öµÄÊ±¼äÎª" << end2 - start2 << std::endl;
+	std::cout << "ç§»åŠ¨æ„é€ 20000ä¸ªçš„æ—¶é—´ä¸º" << end2 - start2 << std::endl;
 
+	
+	struct rule
+	{
+		bool operator()(const GenmanString& a, const GenmanString& b) const{
+
+			return (std::strncmp(a.B.longStr.prefix, b.B.longStr.prefix, 4) < 0);
+		}
+	};
+
+	struct rule2
+	{
+		bool operator()(const std::string a, const std::string b) const{
+
+			return a < b;
+		}
+	};
+	std::multiset< GenmanString, rule> set1;
+	std::multiset< std::string, rule2> set2;
+
+	std::uniform_int_distribution<> dister(1,254);
+	std::default_random_engine rd;
+	//ç”Ÿæˆéšæœºå­—ç¬¦æ•°ç»„å¹¶åˆå§‹åŒ–å­—ç¬¦ä¸²
+	char** s = new char*[10000];
+	for (int i = 0; i < 10000; i++)
+	{
+		s[i] = new char[20];
+	}
+	for (int i = 0; i < 10000; i++)
+	{
+		for (int j = 0; j < 20; j++)
+		{
+			s[i][j] = (char)dister(rd);
+		}
+	}
+	start2 = clock();
+	for (int i = 0; i < 10000; i++)
+	{	
+		GenmanString* g = new GenmanString(s[i]);
+		set1.insert(*g);
+	}
+	end2 = clock();
+	std::cout << "ä½¿ç”¨GenmanStringæ„å»ºset1ç´¢å¼•èŠ±è´¹çš„æ—¶é—´ä¸º" << end2 - start2 << std::endl;
+
+	start2 = clock();
+	for (int i = 0; i < 10000; i++)
+	{
+		std::string* g = new std::string(s[i]);
+		set2.insert(*g);
+	}
+	end2 = clock();
+	std::cout << "ä½¿ç”¨std::Stringæ„å»ºset2ç´¢å¼•èŠ±è´¹çš„æ—¶é—´ä¸º" << end2 - start2 << std::endl;
+
+	std::cin;
 };
 
